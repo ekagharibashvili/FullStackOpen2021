@@ -2,11 +2,19 @@ import React, { useState } from 'react'
 
 const Heading = ({ text }) => <h1> {text} </h1>;
 
-const Button = ({ handleClick, text }) => {
+const Button = ({ handleClick1, text1, handleClick2, text2, handleClick3, text3 }) => {
     return (
-        <button onClick={handleClick}>
-            {text}
-        </button>
+        <>
+            <button onClick={handleClick1}>
+                {text1}
+            </button>
+            <button onClick={handleClick2}>
+                {text2}
+            </button>
+            <button onClick={handleClick3}>
+                {text3}
+            </button>
+        </>
     )
 }
 
@@ -19,19 +27,19 @@ const Statistics = ({ good, neutral, bad, all, average, positive }) => {
                 </div>
             ) : (
                 <div>
-                    <Total text='good' amount={good} />
-                    <Total text='neutral' amount={neutral} />
-                    <Total text='bad' amount={bad} />
-                    <Total text='all' amount={all} />
-                    <Total text='average' amount={average} />
-                    <Total text='positive' amount={positive + '%'} />
+                    <StatisticLine text='good' amount={good} />
+                    <StatisticLine text='neutral' amount={neutral} />
+                    <StatisticLine text='bad' amount={bad} />
+                    <StatisticLine text='all' amount={all} />
+                    <StatisticLine text='average' amount={average} />
+                    <StatisticLine text='positive' amount={positive + '%'} />
                 </div>
             )}
         </div>
     );
 }
 
-const Total = ({ text, amount }) => {
+const StatisticLine = ({ text, amount }) => {
     return (
         <p> {text} {amount} </p>
     )
@@ -50,14 +58,19 @@ const App = () => {
     return (
         <div>
             <Heading text='give feedback' />
-            <Button handleClick={() => setGood(good + 1)} text='good' />
-            <Button handleClick={() => setNeutral(neutral + 1)} text='neutral' />
-            <Button handleClick={() => setBad(bad + 1)} text='bad' />
+            <Button
+                handleClick1={() => setGood(good + 1)} text1='good'
+                handleClick2={() => setNeutral(neutral + 1)} text2='neutral'
+                handleClick3={() => setBad(bad + 1)} text3='bad' />
             <Heading text='statistics' />
-            <Statistics good={good}
-                neutral={neutral} bad={bad} all={all}
+            <Statistics
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                all={all}
                 average={average}
-                positive={positive} />
+                positive={positive}
+            />
         </div>
     )
 }
