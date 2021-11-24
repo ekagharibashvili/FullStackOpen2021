@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-const Button = ({handleClick}) => {
+const Button = ({ handleClick }) => {
   return (
-    <button onClick = {handleClick} >next anecdote</button>
+    <button onClick={handleClick} >next anecdote</button>
   )
 }
 
@@ -16,16 +16,18 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients'
   ]
-    const length = anecdotes.length
-    const [ selected, setSelected ] = useState(0)
-    const rand = Math.floor(Math.random() * length)
-    return (
-      <div>
-        <div>{anecdotes[selected]}</div>
-        <Button handleClick={() => setSelected(rand)} />
-      </div>
-    )
-    
-    }
+  const length = anecdotes.length
+  const [selected, setSelected] = useState(0)
+  const newNumber = () => {
+    setSelected(() => Math.floor(Math.random() * length))
+  }
+  return (
+    <div>
+      <div>{anecdotes[selected]}</div>
+      <Button handleClick={() => newNumber()} />
+    </div>
+  )
+
+}
 
 export default App
